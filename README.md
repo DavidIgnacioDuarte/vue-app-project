@@ -15,5 +15,12 @@ docker build -t vue-project-img .
 2. Y ejecutar un contenedor:
 
 ```bash
-docker run -it -v vue-project-vol:/app -p 8080:8080 --rm --name vue-project-container vue-project.img
+docker run -it --name vue-project-container -v ${PWD}:/usr/src/app -v /usr/src/app/node_modules -p 5000:5000 vue-project-img
+```
+
+pudiendo visualizar así, el contenido de nuestra página accediendo a la **IP** de la _Network_ en cualquier navegador.   
+Para iniciar el contenedor en cualquier momento, ejecutar el comando:
+
+```bash
+docker start vue-project-container
 ```

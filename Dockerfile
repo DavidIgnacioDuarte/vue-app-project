@@ -1,22 +1,20 @@
-FROM node:lts-alpine
+# base image
+FROM node:16.10.0
 
-# instalar un simple servidor http para servir contenido estático
-RUN npm install -g http-server
+RUN npm install -g @vue/cli
 
-# hacer la carpeta 'app' el directorio de trabajo actual
-WORKDIR /app
-
-# copiar 'package.json' y 'package-lock.json' (si están disponibles)
+# set working directory
+WORKDIR /usr/src/app
+ 
+# install and cache app dependencies
 COPY package*.json ./
 
-# instalar dependencias del proyecto
+RUN chown -R node:node .
+USER node
+
 RUN npm install
 
-# copiar los archivos y carpetas del proyecto al directorio de trabajo actual (es decir, la carpeta 'app')
 COPY . .
 
-# construir app para producción minificada
-RUN npm run build
-
-EXPOSE 8080
-CMD [ "http-server", "dist" ]
+# start app
+CMD npm run dev --host
