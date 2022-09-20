@@ -20,7 +20,7 @@ const router = createRouter({
     {
       path:'/axios-use',
       name: 'axios-use',
-      component: () => import('../components/AnimalFacts.vue')
+      component: () => import('../components/WeatherCard.vue')
     }
   ]
 })
