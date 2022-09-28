@@ -24,3 +24,12 @@ Para iniciar el contenedor en cualquier momento, ejecutar el comando:
 ```bash
 docker start vue-project-container
 ```
+
+# Uso de handsontable
+
+Para instalar la libreria ejecutar en consola:
+```bash
+- npm install handsontable @handsontable/vue3
+```
+
+[Más info](https://handsontable.com/docs/vue3-installation/#basic-usage)
