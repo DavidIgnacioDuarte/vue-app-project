@@ -24,7 +24,7 @@ const router = createRouter({
       component: () => import('../components/WeatherCard.vue')
     }, 
     {
-      path:'/',
+      path:'/tabla',
       name: 'tabla',
       component: () => import('../components/TablaExel.vue')
     }
