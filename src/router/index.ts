@@ -26,7 +26,7 @@ const router = createRouter({
     {
       path:'/tabla',
       name: 'tabla',
-      component: () => import('../components/TablaExel.vue')
+      component: () => import('../components/TablaExcel.vue')
     }
   ]
 })
