@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import TablaExcel from '../components/TablaExcel.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +26,7 @@ const router = createRouter({
     {
       path:'/tabla',
       name: 'tabla',
-      component: () => import('../components/TablaExcel.vue')
+      component: () => TablaExcel //import('../components/TablaExcel.vue')
     }
   ]
 })

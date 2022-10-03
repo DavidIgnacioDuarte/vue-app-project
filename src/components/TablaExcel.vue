@@ -3,14 +3,13 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
   import { HotTable } from '@handsontable/vue3';
   import { registerAllModules } from 'handsontable/registry';
 
   // register Handsontable's modules
   registerAllModules();
 
-  export default defineComponent({
+  export default({
     data() {
       return {
           settings: {
