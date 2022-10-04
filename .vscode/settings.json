@@ -1,0 +1,7 @@
+{
+    "window.zoomLevel": 1,
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    "editor.formatOnSave": true
+}
