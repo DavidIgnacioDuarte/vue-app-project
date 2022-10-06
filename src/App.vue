@@ -39,7 +39,13 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 <style>
 .contenido {
-
-  margin: 0px !important;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
 }
 </style>
+
+

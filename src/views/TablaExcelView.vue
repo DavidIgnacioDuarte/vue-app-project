@@ -1,11 +1,7 @@
 <template>
-  <header></header>
-
-  <body>
-    <div class="centradoTabla">
-      <hot-table :settings="settings"></hot-table>
-    </div>
-  </body>
+  <div class="centradoTabla">
+    <hot-table :settings="settings"></hot-table>
+  </div>
 </template>
 
 <script lang="ts">
@@ -30,6 +26,9 @@ export default {
         colWidths: [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
         colHeaders: ["ORDEN", "ESTADO", "PROXIMO_PASO", "N_DE_EXPEDIENTE", "SUJETO_OBLIGADO", "MINISTERIO_ORBITA", "FECHA_DE_PRESENTACION", "RECLAMANTE", "FORMA_DE_INGRESO", "PROVINCIA", "MOTIVO_DEL_RECLAMO", "SINTESIS_DEL_RECLAMO", "N_EXPEDIENTE_SOLICITUD", "N_NOTA_DE_TRASLADO", "1ER_VENCIMIENTO_NOTA_DESCARGO", "PASE_A_DNPDP", "VENCIMIENTO_RECLAMO", "N_DE ACTO ADMINISTRATIVO", "RESOLUCIÓN_DEL_RECLAMO", "FECHA_DE_ACTO_ADMINISTRATIVO", "SINTESIS_RESOLUCION", "OBSERVACIONES", "NOTIFICACION", "RESPONSABLE", "VENCIMIENTO_RESOLUCION", "CUMPLIMIENTO_RESOLUCION_NOTA", "INFORME_DE_CIERRE", "RESULTADO_INTIMACION", "Aux - Días Calculados", "Día,Aux-Fecha-Present", "Id-Provincia", "Aux-DateEng"],
         width: 1000,
+        rowColumn: true,
+        className: 'htCenter',
+        tableClassName: '',
         licenseKey: "non-commercial-and-evaluation",
         columns: [
           { data: 0, type: "numeric" }, //Index
@@ -80,10 +79,5 @@ export default {
 </script>
 
 <style src="handsontable/dist/handsontable.full.css">
-.centradoTabla {
-  padding: auto !important;
-  display: flow-root list-item !important;
-  width: 0 auto !important;
-  max-width: auto !important;
-}
+
 </style>
