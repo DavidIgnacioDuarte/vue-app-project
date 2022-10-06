@@ -1,11 +1,7 @@
 <template>
-  <header></header>
-
-  <body>
-    <div class="centradoTabla">
-      <hot-table :settings="settings"></hot-table>
-    </div>
-  </body>
+  <div class="centradoTabla">
+    <hot-table :settings="settings"></hot-table>
+  </div>
 </template>
 
 <script lang="ts">
