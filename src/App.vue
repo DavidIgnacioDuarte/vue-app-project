@@ -31,11 +31,10 @@ import { RouterLink, RouterView } from 'vue-router'
     </div>
   </nav>
 
-  <body>
-    <div id="contenido">
-      <RouterView></RouterView>
-    </div>
-  </body>
+  <div id="contenido">
+    <RouterView></RouterView>
+  </div>
+
 </template>
 <style>
 .contenido {
