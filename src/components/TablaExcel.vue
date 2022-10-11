@@ -21,7 +21,7 @@ export default {
           [5, "Cerrado", "Finalizado", "EX - 2017 - 30827262 - APN - AAIP", "Gendarmería Nacional", "Ministerio de Seguridad", 43070, "Yrenarco Fernandez", "PAPEL", "Formosa", "Silencio", "", "SIN GDE", "NO - 2017 - 30879963 - APN - AAIP", "2017 - 08 - 12", "", 43116, "RESOL 2018 - 2 - APN - AAIP", "Intimacion", 43115, "Intimacion por denegatoria injustificada, Se hizo lugar el reclamo intimando a la entrega de la información.Por NO - 2018 - 03301230 - APN - SSAJ#MSG se informa que el 17 / 1 Gendarmería envió documentación al requirente", "Por NO - 2018 - 02771178 - APN - AAIP el 17 / 1 se notificó resolución a Seguridad", "", "", "Por Nota 2018 - 03301230APN - SSAJ#MSG contestan que gendarmería entrego información", "", "", "", 43117, "Wednesday", 43070, 8, 43116],
           [6, "Cerrado", "Finalizado", "EX - 2017 - 31370134 - APN - AAIP", "Edesur S.A", "Empresa", 43074, "Miguel Angel Bolaños", "E - MAIL", "Buenos Aires", "Silencio", "", "SIN GDE", "NO 2017 - 31373951 - APN - AAIP", "14 / 12 / 2017", "", 43118, "IF - 2018 - 01605943 - APN - AAIP", "Archivo", 43109, "Archivo por ampliacion de respuesta", "Se cerro declarando abstracto el reclamo por haberse contestado al requirente fuera de plazo al momento de solicitar el descargo", "12 / 1 / 18 se notificó al reclamante y al sujeto obligado", "", "", "", "", "", 43119, "Friday", 43074, 1, 43118]
         ],
-        colWidths: [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
+        colWidths: [80, 90, 130, 250,220, 200, 200, 200, 200, 200, 150, 150, 150, 200, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
         colHeaders: ["ORDEN", "ESTADO", "PROXIMO_PASO", "N_DE_EXPEDIENTE", "SUJETO_OBLIGADO", "MINISTERIO_ORBITA", "FECHA_DE_PRESENTACION", "RECLAMANTE", "FORMA_DE_INGRESO", "PROVINCIA", "MOTIVO_DEL_RECLAMO", "SINTESIS_DEL_RECLAMO", "N_EXPEDIENTE_SOLICITUD", "N_NOTA_DE_TRASLADO", "1ER_VENCIMIENTO_NOTA_DESCARGO", "PASE_A_DNPDP", "VENCIMIENTO_RECLAMO", "N_DE ACTO ADMINISTRATIVO", "RESOLUCIÓN_DEL_RECLAMO", "FECHA_DE_ACTO_ADMINISTRATIVO", "SINTESIS_RESOLUCION", "OBSERVACIONES", "NOTIFICACION", "RESPONSABLE", "VENCIMIENTO_RESOLUCION", "CUMPLIMIENTO_RESOLUCION_NOTA", "INFORME_DE_CIERRE", "RESULTADO_INTIMACION", "Aux - Días Calculados", "Día,Aux-Fecha-Present", "Id-Provincia", "Aux-DateEng"],
         width: 1000,
         autoRowSize: true,
@@ -64,6 +64,7 @@ export default {
         ],
         customBorders: true,
         dropdownMenu: true,
+        formulas:true
       },
     };
   },
