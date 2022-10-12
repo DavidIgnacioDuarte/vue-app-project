@@ -64,6 +64,9 @@ export default {
                             disableDayFn: function (date) {
                                 // Disable Sunday and Saturday
                                 return date.getDay() === 0 || date.getDay() === 6;
+                            },
+                            parse: function (date: Date, format: string) {
+                                return moment(date, format).toDate();
                             }
                         }
                     },
