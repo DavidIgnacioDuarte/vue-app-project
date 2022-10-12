@@ -6,9 +6,22 @@
 import { HotTable, HotColumn } from "@handsontable/vue3";
 import { registerAllModules } from "handsontable/registry";
 import * as Papa from "papaparse";
+import Handsontable from 'handsontable';
 
 // register Handsontable's modules
 registerAllModules();
+
+function semaphoreRenderer(instance, td, row, col, prop, value, cellProperties) {
+  Handsontable.renderers.TextRenderer.apply(this, arguments);
+
+    const data = instance.getData()[row][31];
+    if (data > 15) {
+        td.style.backgroundColor = "red";
+    } else if (data > 5) {
+        td.style.backgroundColor = "yellow";
+    }
+}
+Handsontable.renderers.registerRenderer('semaphoreRenderer', semaphoreRenderer);
 
 export default {
     data() {
@@ -76,6 +89,9 @@ export default {
                 dropdownMenu: true,
                 contextMenu: true,
                 fixedColumnsLeft: 4,
+                cells(row, col) {
+                    return { renderer: 'semaphoreRenderer' };
+                }                    
             },
         };
     },
