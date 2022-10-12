@@ -1,5 +1,5 @@
 <template>
-  <hot-table ref="hotTableComponent" :settings="settings"></hot-table>
+    <hot-table ref="hotTableComponent" :settings="settings"></hot-table>
 </template>
   
 <script lang="ts">
@@ -16,19 +16,36 @@ export default {
             settings: {
                 colWidths: [80, 90, 130, 250, 220, 200, 200, 200, 200, 200, 150, 150, 150, 200, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
                 colHeaders: ["ORDEN", "ESTADO", "PROXIMO_PASO", "N_DE_EXPEDIENTE", "SUJETO_OBLIGADO", "MINISTERIO_ORBITA", "FECHA_DE_PRESENTACION", "RECLAMANTE", "FORMA_DE_INGRESO", "PROVINCIA", "MOTIVO_DEL_RECLAMO", "SINTESIS_DEL_RECLAMO", "N_EXPEDIENTE_SOLICITUD", "N_NOTA_DE_TRASLADO", "1ER_VENCIMIENTO_NOTA_DESCARGO", "PASE_A_DNPDP", "VENCIMIENTO_RECLAMO", "N_DE ACTO ADMINISTRATIVO", "RESOLUCIÓN_DEL_RECLAMO", "FECHA_DE_ACTO_ADMINISTRATIVO", "SINTESIS_RESOLUCION", "OBSERVACIONES", "NOTIFICACION", "RESPONSABLE", "VENCIMIENTO_RESOLUCION", "CUMPLIMIENTO_RESOLUCION_NOTA", "INFORME_DE_CIERRE", "RESULTADO_INTIMACION", "Aux - Días Calculados", "Día,Aux-Fecha-Present", "Id-Provincia", "Aux-DateEng"],
-                width: 1000,
+                width: "100%",
                 autoRowSize: true,
                 licenseKey: "non-commercial-and-evaluation",
                 columns: [
-                    { data: 0, type: "numeric" }, //Index
+                    { data: 0, type: "numeric", readOnly: true }, //Index
                     {
-                        data: 1, type: 'dropdown', source: ["cerrado", "Abierto", "En Progreso"] //Estado
+                        data: 1, type: 'dropdown', source: ["Cerrado", "Abierto", "En Progreso"] //Estado
                     },
                     { data: 2, type: "text" },
                     { data: 3, type: "text" },
                     { data: 4, type: "text" },
                     { data: 5, type: "text" },
-                    { data: 6, type: "text" },
+                    {
+                        data: 6,
+                        type: 'date',
+                        dateFormat: 'DD/MM/YY',
+                        correctFormat: true,
+                        defaultDate: '01/01/1900',
+                        // datePicker additional options (see https://github.com/dbushell/Pikaday#configuration)
+                        datePickerConfig: {
+                            // First day of the week (0: Sunday, 1: Monday, etc)
+                            firstDay: 0,
+                            // showWeekNumber: true,
+                            numberOfMonths: 1,
+                            disableDayFn: function(date) {
+                                // Disable Sunday and Saturday
+                                return date.getDay() === 0 || date.getDay() === 6;
+                            }
+                        }
+                    },
                     { data: 7, type: "text" },
                     { data: 8, type: "text" },
                     { data: 9, type: "text" },
@@ -58,6 +75,7 @@ export default {
                 customBorders: true,
                 dropdownMenu: true,
                 contextMenu: true,
+                fixedColumnsLeft: 4,
             },
         };
     },
@@ -71,8 +89,8 @@ export default {
         Papa.parse("ejemplo_reclamos.csv", {
         download: true,
             complete: ({ data: [_, ... data]}) => {
-            this.swapHotData(data);
-        },
+                this.swapHotData(data);
+            },
         });
     },
     components: {
@@ -81,6 +99,4 @@ export default {
     },
 };
 </script>
-<style src="handsontable/dist/handsontable.full.css">
-
-</style>
+<style src="handsontable/dist/handsontable.full.css" />
