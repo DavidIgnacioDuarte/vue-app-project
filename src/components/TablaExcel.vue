@@ -6,13 +6,13 @@
 import { HotTable, HotColumn } from "@handsontable/vue3";
 import { registerAllModules } from "handsontable/registry";
 import * as Papa from "papaparse";
-import Handsontable from 'handsontable';
+import Handsontable from "handsontable";
 
 // register Handsontable's modules
 registerAllModules();
 
 function semaphoreRenderer(instance, td, row, col, prop, value, cellProperties) {
-  Handsontable.renderers.TextRenderer.apply(this, arguments);
+    Handsontable.renderers.TextRenderer.apply(this, arguments);
 
     const data = instance.getData()[row][31]; // Magic number :-(
     if (data > 15) {
@@ -28,14 +28,14 @@ export default {
         return {
             settings: {
                 colWidths: [80, 90, 130, 250, 220, 200, 200, 200, 200, 200, 150, 150, 150, 200, 150, 150, 150, 150, 150, 150, 150, 350, 250, 150, 150, 250, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
-                colHeaders: ["ORDEN", "ESTADO", "PROXIMO_PASO", "N_DE_EXPEDIENTE", "SUJETO_OBLIGADO", "MINISTERIO_ORBITA", "FECHA_DE_PRESENTACION", "RECLAMANTE", "FORMA_DE_INGRESO", "PROVINCIA", "MOTIVO_DEL_RECLAMO", "SINTESIS_DEL_RECLAMO", "N_EXPEDIENTE_SOLICITUD", "N_NOTA_DE_TRASLADO", "1ER_VENCIMIENTO_NOTA_DESCARGO", "PASE_A_DNPDP", "VENCIMIENTO_RECLAMO", "N_DE ACTO ADMINISTRATIVO", "RESOLUCIÓN_DEL_RECLAMO", "FECHA_DE_ACTO_ADMINISTRATIVO", "SINTESIS_RESOLUCION", "OBSERVACIONES", "NOTIFICACION", "RESPONSABLE", "VENCIMIENTO_RESOLUCION", "CUMPLIMIENTO_RESOLUCION_NOTA", "INFORME_DE_CIERRE", "RESULTADO_INTIMACION", "Aux - Días Calculados", "Día","Aux-Fecha-Present", "Id-Provincia", "Aux-DateEng"],
+                colHeaders: ["Orden", "Estado", "Proximo Paso", "N Expediente", "Sujeto Obligado", "Ministerio Órbita", "Fecha de Presentación", "Reclamante", "Forma de ingreso", "Provincia", "Motivo del reclamo", "Síntesis del Reclamo", "N. Expediente Solicitud", "N. Nota Traslado", "1er Vencimiento Nota Descargo", "Pase a DNPD", "Vencimiento Reclamo", "N. de acto administrativo", "Res. del reclamo", "Fecha acto adm.", "Síntesis de Resolución", "Observaciones", "Notificación", "Responspable", "Vencimiento Resol.", "Cumplimiento Resol. Nota", "Informe de cierre", "Resultado intimación", "Aux - Días Calculados", "Día", "Aux-Fecha-Present", "Id-Provincia", "Aux-DateEng"],
                 width: "100%",
                 autoRowSize: true,
                 licenseKey: "non-commercial-and-evaluation",
                 columns: [
                     { data: "ORDEN", type: "numeric", readOnly: true }, //Index
                     {
-                        data: "ESTADO", type: 'dropdown', source: ["Cerrado", "Abierto", "En Progreso"] //Estado
+                        data: "ESTADO", type: 'dropdown', source: ["En trámite", "Cerrado"] //Estado
                     },
                     { data: "PROXIMO_PASO", type: "text" },
                     { data: "N_DE_EXPEDIENTE", type: "text" },
@@ -53,7 +53,7 @@ export default {
                             firstDay: 0,
                             // showWeekNumber: true,
                             numberOfMonths: 1,
-                            disableDayFn: function(date) {
+                            disableDayFn: function (date) {
                                 // Disable Sunday and Saturday
                                 return date.getDay() === 0 || date.getDay() === 6;
                             }
@@ -93,7 +93,7 @@ export default {
                 fixedColumnsLeft: 4,
                 cells(row, col) {
                     return { renderer: 'semaphoreRenderer' };
-                }                    
+                }
             },
         };
     },
@@ -101,7 +101,7 @@ export default {
         swapHotData: function (data) {
             data.forEach(rowData => {
                 Object.defineProperty(rowData, 'Prueba', {
-                    get() { return this["Día"] + " Dinámico"}
+                    get() { return this["Día"] + " Dinámico" }
                 })
             })
             this.$refs.hotTableComponent.hotInstance.loadData(data);
@@ -122,4 +122,6 @@ export default {
     },
 };
 </script>
+
+
 <style src="handsontable/dist/handsontable.full.css" />
