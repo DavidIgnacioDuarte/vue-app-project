@@ -1,31 +1,38 @@
-/* @import "./base.css";
-
-#app {
-  max-width: 1280px;
-  padding: 2rem;
-
-  font-weight: normal;
+body {
+  margin: 0;
 }
 
-a,
-.green {
+.navbar {
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  /*No es lo mejor, no estaria encontrando otra forma*/
+  position: relative !important;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #090101;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+  font-size: 17px;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-} */
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px;
+  /* Used in this example to enable scrolling */
+}
 
 .handsontable .htAutocompleteArrow {
   color: gray;

@@ -8,9 +8,18 @@ import Navbar from './components/Navbar.vue'
   <header>
     <Navbar></Navbar>
   </header>
-  <RouterView></RouterView>
+  <div id="contenido">
+    <RouterView></RouterView>
+  </div>
 </template>
 
+<style>
+#contenido {
+  margin: 2px;
+  padding: 5px;
+}
+
+</style>
 
 
 
