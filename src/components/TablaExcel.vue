@@ -1,5 +1,6 @@
 <template>
     <hot-table ref="hotTableComponent" :settings="settings"></hot-table>
+    <a class="btn btn-primary" href="#" role="button" v-on:click="addReclamo">Nuevo Reclamo</a>
 </template>
   
 <script lang="ts">
@@ -7,6 +8,7 @@ import { HotTable, HotColumn } from "@handsontable/vue3";
 import { registerAllModules } from "handsontable/registry";
 import * as Papa from "papaparse";
 import Handsontable from "handsontable";
+import { TargetLocationHasArrayError } from "hyperformula";
 
 // register Handsontable's modules
 registerAllModules();
@@ -98,16 +100,58 @@ export default {
         };
     },
     methods: {
-        swapHotData: function (data) {
+        getTable() {
+            return this.$refs.hotTableComponent.hotInstance;
+        },
+        addReclamo() {
+            const table = this.getTable();
+            var newRowData = {
+                "ORDEN": "",
+                "ESTADO": "Abierto",
+                "PROXIMO_PASO" : "",
+                "N_DE_EXPEDIENTE" : "",
+                "SUJETO_OBLIGADO" : "",
+                "MINISTERIO_ORBITA": "",
+                "FECHA_DE_PRESENTACION": "",
+                "RECLAMANTE" : "",
+                "FORMA_DE_INGRESO" : "",
+                "PROVINCIA" : "",
+                "MOTIVO_DEL_RECLAMO" : "",
+                "SINTESIS_DEL_RECLAMO" : "",
+                "N_EXPEDIENTE_SOLICITUD" : "",
+                "N_NOTA_DE_TRASLADO" : "",
+                "1ER_VENCIMIENTO_NOTA_DESCARGO" : "",
+                "PASE_A_DNPDP" : "",
+                "VENCIMIENTO_RECLAMO" : "",
+                "N_DE ACTO ADMINISTRATIVO" : "",
+                "RESOLUCIÓN_DEL_RECLAMO" : "",
+                "FECHA_DE_ACTO_ADMINISTRATIVO" : "",
+                "SINTESIS_RESOLUCION" : "",
+                "OBSERVACIONES" : "",
+                "NOTIFICACION" : "",
+                "RESPONSABLE" : "",
+                "VENCIMIENTO_RESOLUCION" : "",
+                "CUMPLIMIENTO_RESOLUCION_NOTA" : "",
+                "INFORME_DE_CIERRE" : "",
+                "RESULTADO_INTIMACION" : "",
+                "Aux - Días Calculados" : "",
+                "Día" : "",
+                "Aux-Fecha-Present" : "",
+                "Id-Provincia" : "",
+                "Aux-DateEng" : "",
+                "Prueba" : "",
+            }
+            table.updateData([... table.getSourceData(), newRowData])
+        },
+        swapHotData(data) {
             data.forEach(rowData => {
                 Object.defineProperty(rowData, 'Prueba', {
                     get() { return this["Día"] + " Dinámico" }
                 })
             })
-            this.$refs.hotTableComponent.hotInstance.loadData(data);
+            this.getTable().loadData(data);
         },
     },
-
     beforeMount() {
         Papa.parse("ejemplo_reclamos.csv", {
             download: true,
