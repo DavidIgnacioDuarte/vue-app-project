@@ -85,6 +85,7 @@ export default {
                     { data: "Aux-Fecha-Present", type: "text" },
                     { data: "Id-Provincia", type: "text" },
                     { data: "Aux-DateEng", type: "text" },
+                    { data: "Prueba", type: "text" },
                 ],
                 customBorders: true,
                 dropdownMenu: true,
@@ -98,6 +99,11 @@ export default {
     },
     methods: {
         swapHotData: function (data) {
+            data.forEach(rowData => {
+                Object.defineProperty(rowData, 'Prueba', {
+                    get() { return this["Día"] + " Dinámico"}
+                })
+            })
             this.$refs.hotTableComponent.hotInstance.loadData(data);
         },
     },
