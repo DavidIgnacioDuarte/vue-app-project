@@ -7,18 +7,24 @@ import { HotTable, HotColumn } from "@handsontable/vue3";
 import { registerAllModules } from "handsontable/registry";
 import * as Papa from "papaparse";
 import Handsontable from "handsontable";
+import * as moment from "moment";
 
 // register Handsontable's modules
 registerAllModules();
 
 function semaphoreRenderer(instance, td, row, col, prop, value, cellProperties) {
-    Handsontable.renderers.TextRenderer.apply(this, arguments);
-
-    const data = instance.getData()[row][31]; // Magic number :-(
-    if (data > 15) {
-        td.style.backgroundColor = "red";
-    } else if (data > 5) {
-        td.style.backgroundColor = "yellow";
+    Handsontable.renderers.AutocompleteRenderer.apply(this, arguments);
+    if (instance.getData()[row][6] != null) {
+        if (instance.getData()[row][1] != 'Cerrado') {
+            var fecha_presentacion = moment(instance.getData()[row][6], 'DD/MM/YYYY');
+            var hoy = moment();
+            var diferencia = hoy.diff(fecha_presentacion, 'days')
+            if (diferencia > 15) {
+                td.style.backgroundColor = "lightcoral";
+            } else if (diferencia > 5) {
+                td.style.backgroundColor = "lemonchiffon";
+            }
+        }
     }
 }
 Handsontable.renderers.registerRenderer('semaphoreRenderer', semaphoreRenderer);
@@ -53,6 +59,7 @@ export default {
                             firstDay: 0,
                             // showWeekNumber: true,
                             numberOfMonths: 1,
+                            format: 'DD/MM/YY',
                             disableDayFn: function (date) {
                                 // Disable Sunday and Saturday
                                 return date.getDay() === 0 || date.getDay() === 6;
@@ -92,7 +99,10 @@ export default {
                 contextMenu: true,
                 fixedColumnsLeft: 4,
                 cells(row, col) {
-                    return { renderer: 'semaphoreRenderer' };
+                    // return { renderer: 'semaphoreRenderer' };
+                    if (col == 1) {
+                        this.renderer = semaphoreRenderer;
+                    }
                 }
             },
         };
