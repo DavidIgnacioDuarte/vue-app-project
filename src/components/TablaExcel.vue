@@ -63,16 +63,15 @@ export default {
     },
     methods: {
         swapHotData: function (data) {
-        data.shift();
-        this.$refs.hotTableComponent.hotInstance.loadData(data);
+            this.$refs.hotTableComponent.hotInstance.loadData(data);
         },
     },
 
     beforeMount() {
         Papa.parse("ejemplo_reclamos.csv", {
         download: true,
-        complete: (results) => {
-            this.swapHotData(results.data);
+            complete: ({ data: [_, ... data]}) => {
+            this.swapHotData(data);
         },
         });
     },
