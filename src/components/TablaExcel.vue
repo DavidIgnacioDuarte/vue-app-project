@@ -1,6 +1,10 @@
 <template>
-    <hot-table ref="hotTableComponent" :settings="settings"></hot-table>
-    <a class="btn btn-primary" href="#" role="button" v-on:click="addReclamo">Nuevo Reclamo</a>
+    <div class="table-container">
+        <hot-table ref="hotTableComponent" :settings="settings"></hot-table>
+    </div>
+    <a class="btn btn-primary floating-button" href="#" role="button" v-on:click="addReclamo">
+        Nuevo Reclamo
+    </a>
 </template>
   
 <script lang="ts">
@@ -12,6 +16,7 @@ import * as moment from "moment";
 
 // register Handsontable's modules
 registerAllModules();
+
 
 function semaphoreRenderer(instance, td, row, col, prop, value, cellProperties) {
     Handsontable.renderers.AutocompleteRenderer.apply(this, arguments);
@@ -244,8 +249,21 @@ export default {
 };
 </script>
 
+<style src="handsontable/dist/handsontable.full.css" />
+<style scoped>
+    .table-container {
+        height: calc(100vh - 56px);
+        width: 100vw;
+        background-color: red;
+        position:relative;
+        overflow: hidden;
+    }
 
-
+    .floating-button {
+        position:fixed;
+        bottom: 30px;
+        right: 40px;
+    }
 
 
 
