@@ -35,7 +35,7 @@ export default {
         return {
             settings: {
                 colWidths: [80, 90, 130, 250, 220, 200, 200, 200, 200, 200, 150, 150, 150, 200, 150, 150, 150, 150, 150, 150, 150, 350, 250, 150, 150, 250, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
-                colHeaders: ["Orden", "Estado", "Proximo Paso", "N Expediente", "Sujeto Obligado", "Ministerio Órbita", "Fecha de Presentación", "Reclamante", "Forma de ingreso", "Provincia", "Motivo del reclamo", "Síntesis del Reclamo", "N. Expediente Solicitud", "N. Nota Traslado", "1er Vencimiento Nota Descargo", "Pase a DNPD", "Vencimiento Reclamo", "N. de acto administrativo", "Res. del reclamo", "Fecha acto adm.", "Síntesis de Resolución", "Observaciones", "Notificación", "Responspable", "Vencimiento Resol.", "Cumplimiento Resol. Nota", "Informe de cierre", "Resultado intimación", "Aux - Días Calculados", "Día", "Aux-Fecha-Present", "Id-Provincia", "Aux-DateEng"],
+                colHeaders: ["Orden", "Estado", "Proximo Paso", "N Expediente", "Sujeto Obligado", "Ministerio Órbita", "Fecha de Presentación", "Reclamante", "Forma de ingreso", "Provincia", "Motivo del reclamo", "Síntesis del Reclamo", "N. Expediente Solicitud", "N. Nota Traslado", "1er Vencimiento Nota Descargo", "Pase a DNPD", "Vencimiento Reclamo", "N. de acto administrativo", "Res. del reclamo", "Fecha acto adm.", "Síntesis de Resolución", "Observaciones", "Notificación", "Responspable", "Vencimiento Resol.", "Cumplimiento Resol. Nota", "Informe de cierre", "Resultado intimación", "Col. Dinámica"],
                 width: "100%",
                 autoRowSize: true,
                 licenseKey: "non-commercial-and-evaluation",
@@ -91,11 +91,6 @@ export default {
                     { data: "CUMPLIMIENTO_RESOLUCION_NOTA", type: "text" },
                     { data: "INFORME_DE_CIERRE", type: "text" },
                     { data: "RESULTADO_INTIMACION", type: "text" },
-                    { data: "Aux - Días Calculados", type: "text" },
-                    { data: "Día", type: "text" },
-                    { data: "Aux-Fecha-Present", type: "text" },
-                    { data: "Id-Provincia", type: "text" },
-                    { data: "Aux-DateEng", type: "text" },
                     { data: "Prueba", type: "text" },
                 ],
                 customBorders: true,
@@ -145,20 +140,14 @@ export default {
                 "VENCIMIENTO_RESOLUCION": "",
                 "CUMPLIMIENTO_RESOLUCION_NOTA": "",
                 "INFORME_DE_CIERRE": "",
-                "RESULTADO_INTIMACION": "",
-                "Aux - Días Calculados": "",
-                "Día": "",
-                "Aux-Fecha-Present": "",
-                "Id-Provincia": "",
-                "Aux-DateEng": "",
-                "Prueba": "",
+                "RESULTADO_INTIMACION": ""
             }
             table.updateData([...table.getSourceData(), newRowData])
         },
         swapHotData(data) {
             data.forEach(rowData => {
                 Object.defineProperty(rowData, 'Prueba', {
-                    get() { return this["Día"] + " Dinámico" }
+                    get() { return this["RECLAMANTE"] + " Dinámico" }
                 })
             })
             this.getTable().loadData(data);
