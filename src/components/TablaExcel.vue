@@ -78,9 +78,9 @@ export default {
                 autoRowSize: true,
                 licenseKey: "non-commercial-and-evaluation",
                 columns: [
-                    { data: "ORDEN", type: "numeric", readOnly: true }, //Index
+                    { data: "ORDEN", type: "numeric", readOnly: true },
                     {
-                        data: "ESTADO", type: 'dropdown', source: ["En trámite", "Cerrado"]//Estado
+                        data: "ESTADO", type: 'dropdown', source: ["En trámite", "Cerrado"]
                     },
                     { data: "PROXIMO_PASO", type: 'autocomplete', strict: true, filter: false, allowInvalid: false, source: getProximosPasos() },
                     { data: "N_DE_EXPEDIENTE", type: "text" },
@@ -148,16 +148,34 @@ export default {
         getTable() {
             return this.$refs.hotTableComponent.hotInstance;
         },
+        padTo2Digits(numero) {
+            return numero.toString().padStart(2, '0');
+        },
+        formatoFecha(date) {
+            return [
+                this.padTo2Digits(date.getDate()),
+                this.padTo2Digits(date.getMonth() + 1),
+                date.getFullYear().toString().substr(-2)
+            ].join('/');
+        },
+        fechaDePresentacion() {
+
+            return this.formatoFecha(new Date());
+        },
+        venciminetoDeReclamo() {
+            return moment(this.fechaDePresentacion(), "DD/MM/YY").add(30, 'days').format('DD/MM/YYYY');
+        },
+
         addReclamo() {
             const table = this.getTable();
             var newRowData = {
                 "ORDEN": "",
-                "ESTADO": "Abierto",
+                "ESTADO": "En trámite",
                 "PROXIMO_PASO": "",
                 "N_DE_EXPEDIENTE": "",
                 "SUJETO_OBLIGADO": "",
                 "MINISTERIO_ORBITA": "",
-                "FECHA_DE_PRESENTACION": "",
+                "FECHA_DE_PRESENTACION": this.fechaDePresentacion(),
                 "RECLAMANTE": "",
                 "FORMA_DE_INGRESO": "",
                 "PROVINCIA": "",
@@ -167,7 +185,7 @@ export default {
                 "N_NOTA_DE_TRASLADO": "",
                 "1ER_VENCIMIENTO_NOTA_DESCARGO": "",
                 "PASE_A_DNPDP": "",
-                "VENCIMIENTO_RECLAMO": "",
+                "VENCIMIENTO_RECLAMO": this.venciminetoDeReclamo(),
                 "N_DE ACTO ADMINISTRATIVO": "",
                 "RESOLUCIÓN_DEL_RECLAMO": "",
                 "FECHA_DE_ACTO_ADMINISTRATIVO": "",
@@ -205,6 +223,80 @@ export default {
     },
 };
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
