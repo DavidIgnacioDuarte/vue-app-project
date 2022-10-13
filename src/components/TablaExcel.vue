@@ -28,23 +28,61 @@ function semaphoreRenderer(instance, td, row, col, prop, value, cellProperties) 
         }
     }
 }
+
+function getProximosPasos() {
+
+    return [
+        "Pendiente de descargo",
+        "A subsanar",
+        "No corresponde (Criterio 3: 4)",
+        "Informe de archivo",
+        "IF Técnico / Proy Resolución",
+        "A jurídicos",
+        "A la firma",
+        "A notificar",
+        "Pendiente de cumplimiento",
+        "Informe de cierre",
+        "Finalizado",
+    ]
+}
+
 Handsontable.renderers.registerRenderer('semaphoreRenderer', semaphoreRenderer);
+
+
+function longTextRenderer(instance, td, row, col, prop, value, cellProperties) {
+    Handsontable.renderers.TextRenderer.apply(this, arguments);
+    //pasar esto a una config
+    if (value != null && value.length > 50) {
+        value = value.substring(0, 50);
+        value += "...";
+        td.innerHTML = value;
+    }
+}
+
+Handsontable.renderers.registerRenderer('longTextRenderer', longTextRenderer);
+
+Handsontable.cellTypes.registerCellType('longText', {
+    editor: Handsontable.editors.TextEditor,
+    renderer: longTextRenderer,
+});
+
 
 export default {
     data() {
         return {
             settings: {
-                colWidths: [80, 90, 130, 250, 220, 200, 200, 200, 200, 200, 150, 150, 150, 200, 150, 150, 150, 150, 150, 150, 150, 350, 250, 150, 150, 250, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150],
                 colHeaders: ["Orden", "Estado", "Proximo Paso", "N Expediente", "Sujeto Obligado", "Ministerio Órbita", "Fecha de Presentación", "Reclamante", "Forma de ingreso", "Provincia", "Motivo del reclamo", "Síntesis del Reclamo", "N. Expediente Solicitud", "N. Nota Traslado", "1er Vencimiento Nota Descargo", "Pase a DNPD", "Vencimiento Reclamo", "N. de acto administrativo", "Res. del reclamo", "Fecha acto adm.", "Síntesis de Resolución", "Observaciones", "Notificación", "Responspable", "Vencimiento Resol.", "Cumplimiento Resol. Nota", "Informe de cierre", "Resultado intimación", "Col. Dinámica"],
-                width: "100%",
+                columnHeaderHeight: 40,
+                width: "auto",
+                filters: true,
                 autoRowSize: true,
                 licenseKey: "non-commercial-and-evaluation",
                 columns: [
                     { data: "ORDEN", type: "numeric", readOnly: true }, //Index
                     {
-                        data: "ESTADO", type: 'dropdown', source: ["En trámite", "Cerrado"] //Estado
+                        data: "ESTADO", type: 'dropdown', source: ["En trámite", "Cerrado"]//Estado
                     },
-                    { data: "PROXIMO_PASO", type: "text" },
+                    { data: "PROXIMO_PASO", type: 'autocomplete', strict: true, filter: false, allowInvalid: false, source: getProximosPasos() },
                     { data: "N_DE_EXPEDIENTE", type: "text" },
                     { data: "SUJETO_OBLIGADO", type: "text" },
                     { data: "MINISTERIO_ORBITA", type: "text" },
@@ -71,7 +109,7 @@ export default {
                         }
                     },
                     { data: "RECLAMANTE", type: "text" },
-                    { data: "FORMA_DE_INGRESO", type: "text" },
+                    { data: "FORMA_DE_INGRESO", type: 'dropdown', source: ["TAD", "EMAIL", "PAPEL"] },
                     { data: "PROVINCIA", type: "text" },
                     { data: "MOTIVO_DEL_RECLAMO", type: "text" },
                     { data: "SINTESIS_DEL_RECLAMO", type: "text" },
@@ -84,11 +122,11 @@ export default {
                     { data: "RESOLUCIÓN_DEL_RECLAMO", type: "text" },
                     { data: "FECHA_DE_ACTO_ADMINISTRATIVO", type: "text" },
                     { data: "SINTESIS_RESOLUCION", type: "text" },
-                    { data: "OBSERVACIONES", type: "text" },
-                    { data: "NOTIFICACION", type: "text" },
+                    { data: "OBSERVACIONES", type: "longText" },
+                    { data: "NOTIFICACION", type: "longText" },
                     { data: "RESPONSABLE", type: "text" },
                     { data: "VENCIMIENTO_RESOLUCION", type: "text" },
-                    { data: "CUMPLIMIENTO_RESOLUCION_NOTA", type: "text" },
+                    { data: "CUMPLIMIENTO_RESOLUCION_NOTA", type: "longText" },
                     { data: "INFORME_DE_CIERRE", type: "text" },
                     { data: "RESULTADO_INTIMACION", type: "text" },
                     { data: "Prueba", type: "text" },

@@ -37,3 +37,7 @@ body {
 .handsontable .htAutocompleteArrow {
   color: gray;
 }
+
+.htCore th {
+  background-color: lightskyblue;
+}
