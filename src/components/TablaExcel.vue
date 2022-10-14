@@ -71,14 +71,15 @@ export default {
     data() {
         return {
             settings: {
-                colHeaders: ["Orden", "Estado", "Proximo Paso", "N Expediente", "Sujeto Obligado", "Ministerio Órbita", "Fecha de Presentación", "Reclamante", "Forma de ingreso", "Provincia", "Motivo del reclamo", "Síntesis del Reclamo", "N. Expediente Solicitud", "N. Nota Traslado", "1er Vencimiento Nota Descargo", "Pase a DNPD", "Vencimiento Reclamo", "N. de acto administrativo", "Res. del reclamo", "Fecha acto adm.", "Síntesis de Resolución", "Observaciones", "Notificación", "Responspable", "Vencimiento Resol.", "Cumplimiento Resol. Nota", "Informe de cierre", "Resultado intimación", "Col. Dinámica"],
+                colHeaders: ["Estado", "Proximo Paso", "N Expediente", "Sujeto Obligado", "Ministerio Órbita", "Fecha de Presentación", "Reclamante", "Forma de ingreso", "Provincia", "Motivo del reclamo", "Síntesis del Reclamo", "N. Expediente Solicitud", "N. Nota Traslado", "1er Vencimiento Nota Descargo", "Pase a DNPD", "Vencimiento Reclamo", "N. de acto administrativo", "Res. del reclamo", "Fecha acto adm.", "Síntesis de Resolución", "Observaciones", "Notificación", "Responspable", "Vencimiento Resol.", "Cumplimiento Resol. Nota", "Informe de cierre", "Resultado intimación", "Col. Dinámica"],
                 columnHeaderHeight: 40,
                 width: "auto",
                 filters: true,
+                rowHeaders: true,
                 autoRowSize: true,
                 licenseKey: "non-commercial-and-evaluation",
                 columns: [
-                    { data: "ORDEN", type: "numeric", readOnly: true },
+                    // { data: "ORDEN", type: "numeric", readOnly: true },
                     {
                         data: "ESTADO", type: 'dropdown', source: ["En trámite", "Cerrado"]
                     },
@@ -115,17 +116,37 @@ export default {
                     { data: "SINTESIS_DEL_RECLAMO", type: "text" },
                     { data: "N_EXPEDIENTE_SOLICITUD", type: "text" },
                     { data: "N_NOTA_DE_TRASLADO", type: "text" },
-                    { data: "1ER_VENCIMIENTO_NOTA_DESCARGO", type: "text" },
+                    {
+                        data: "1ER_VENCIMIENTO_NOTA_DESCARGO",
+                        type: 'date',
+                        dateFormat: 'DD/MM/YY',
+                        correctFormat: true
+                    },
                     { data: "PASE_A_DNPDP", type: "text" },
-                    { data: "VENCIMIENTO_RECLAMO", type: "text" },
+                    {
+                        data: "VENCIMIENTO_RECLAMO",
+                        type: 'date',
+                        dateFormat: 'DD/MM/YY',
+                        correctFormat: true
+                    },
                     { data: "N_DE ACTO ADMINISTRATIVO", type: "text" },
                     { data: "RESOLUCIÓN_DEL_RECLAMO", type: "text" },
-                    { data: "FECHA_DE_ACTO_ADMINISTRATIVO", type: "text" },
+                    {
+                        data: "FECHA_DE_ACTO_ADMINISTRATIVO",
+                        type: 'date',
+                        dateFormat: 'DD/MM/YY',
+                        correctFormat: true,
+                    },
                     { data: "SINTESIS_RESOLUCION", type: "text" },
                     { data: "OBSERVACIONES", type: "longText" },
                     { data: "NOTIFICACION", type: "longText" },
                     { data: "RESPONSABLE", type: "text" },
-                    { data: "VENCIMIENTO_RESOLUCION", type: "text" },
+                    {
+                        data: "VENCIMIENTO_RESOLUCION",
+                        type: 'date',
+                        dateFormat: 'DD/MM/YY',
+                        correctFormat: true
+                    },
                     { data: "CUMPLIMIENTO_RESOLUCION_NOTA", type: "longText" },
                     { data: "INFORME_DE_CIERRE", type: "text" },
                     { data: "RESULTADO_INTIMACION", type: "text" },
@@ -159,7 +180,6 @@ export default {
             ].join('/');
         },
         fechaDePresentacion() {
-
             return this.formatoFecha(new Date());
         },
         venciminetoDeReclamo() {
@@ -169,7 +189,7 @@ export default {
         addReclamo() {
             const table = this.getTable();
             var newRowData = {
-                "ORDEN": "",
+                // "ORDEN": "",
                 "ESTADO": "En trámite",
                 "PROXIMO_PASO": "",
                 "N_DE_EXPEDIENTE": "",
@@ -211,7 +231,7 @@ export default {
     },
     beforeMount() {
         Papa.parse("ejemplo_reclamos.csv", {
-            download: true,
+            download: true, getData() { },
             header: true,
             complete: ({ data }) => {
                 this.swapHotData(data);
@@ -223,6 +243,44 @@ export default {
     },
 };
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
