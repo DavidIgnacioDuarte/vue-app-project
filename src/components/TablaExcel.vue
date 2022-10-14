@@ -190,11 +190,13 @@ export default {
         venciminetoDeReclamo() {
             return moment(this.fechaDePresentacion(), "DD/MM/YY").add(30, 'days').format('DD/MM/YYYY');
         },
-
+        incrementarOrden() {
+            return this.getTable().countSourceRows() + 1
+        },
         addReclamo() {
             const table = this.getTable();
             var newRowData = {
-                // "ORDEN": "",
+                "ORDEN": this.incrementarOrden(),
                 "ESTADO": "En trámite",
                 "PROXIMO_PASO": "",
                 "N_DE_EXPEDIENTE": "",
@@ -264,117 +266,4 @@ export default {
         bottom: 30px;
         right: 40px;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style src="handsontable/dist/handsontable.full.css" />
+</style>
