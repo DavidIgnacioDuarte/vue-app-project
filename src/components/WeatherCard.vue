@@ -16,6 +16,7 @@
       <h2><span>Temperatura Máxima:</span> {{ info.main.temp_max }}°F</h2>
       <h2><span>Velocidad del Viento:</span> {{ info.wind.speed }}mph</h2>
       <h2><span>Presión Atmosférica:</span> {{ info.main.pressure }}</h2>
+      
     </div>
   </div>
 
@@ -44,8 +45,8 @@
                     temp_min:'',
                     temp_max:'',
                     pressure: ''
-                  }
-
+                  },
+                   
                 }
             }   
         },
