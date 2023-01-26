@@ -1,26 +1,13 @@
-# Aplicación VUE
+# Semilla Vue 3 + Vite
 
-Proyecto de aplicación de Vue para pruebas (*semilla*).
+Proyecto de aplicación de Vue para pruebas (_semilla_).
 
 ## Visualización de la aplicación web
 
-Usamos **Docker** para simplificar la ejecución, compartiendo las librerías y demás herramientas:
-
-1. Primero, debemos buildear una imagen con el comando:
+Usamos **Docker** para simplificar la ejecución, compartiendo las librerías y demás herramientas, así que para levantar la aplicación solo debemos hacer:
 
 ```bash
-docker build -t vue-project-img .
+docker compose up -d
 ```
 
-2. Y ejecutar un contenedor:
-
-```bash
-docker run -it --name vue-project-container -v ${PWD}:/usr/src/app -v /usr/src/app/node_modules -p 5000:5000 vue-project-img
-```
-
-pudiendo visualizar así, el contenido de nuestra página accediendo a la **IP** de la _Network_ en cualquier navegador.   
-Para iniciar el contenedor en cualquier momento, ejecutar el comando:
-
-```bash
-docker start vue-project-container
-```
+pudiendo visualizar así, el contenido de nuestra página accediendo a `localhost:5000` en cualquier navegador decente (si todavía usas Internet Explorer, esta no es la página que buscas).
