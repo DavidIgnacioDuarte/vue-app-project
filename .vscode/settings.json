@@ -1,0 +1,15 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "intelephense.environment.phpVersion": "7.2.0",
+    "remove-empty-lines.allowedNumberOfEmptyLines": 1,
+    "markdown.extension.tableFormatter.normalizeIndentation": true,
+    "markdown.extension.tableFormatter.enabled": true,
+    "[php]": {
+      "editor.defaultFormatter": "fterrag.vscode-php-cs-fixer"
+    }
+  }
+  
