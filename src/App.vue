@@ -5,15 +5,14 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo" src="@/assets/logo.png" width="125" height="125" />
 
     <div class="wrapper">
       <HelloWorld msg="¡Bienvenido!" />
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/axios-use">Weather Card</RouterLink>
+        <RouterLink to="/about">Qué es esto?</RouterLink>
+        <RouterLink to="/axios-use">API/Axios</RouterLink>
       </nav>
     </div>
   </header>
